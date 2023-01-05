@@ -1,9 +1,9 @@
 import random
 from leveling_test import test_adding_xp
-from mechanics.character.attributes import Attribute, Attributes
+from mechanics.character.attributes import Attributes
 from mechanics.character.hero import Hero
-from mechanics.character.race import Ascenag, Race, Races
-from mechanics.leveling.leveling_effective import LevelStats
+from mechanics.character.race import Races
+from mechanics.leveling.leveling import LevelStats
 from utils.logger import log
 
 
@@ -24,8 +24,8 @@ def main():
 
     log(f"Hero: {hero}")
 
-    for _ in range(hero.level_stats.points):
-        hero.choose_attribute(Attribute.random())
+    # for _ in range(hero.level_stats.points):
+    #     hero.choose_attribute(Attribute.random())
 
     log(f"Hero: {hero}")
 

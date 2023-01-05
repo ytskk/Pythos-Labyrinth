@@ -1,7 +1,5 @@
 import math
 from lib.utils import clamp
-from mechanics.character.attributes import Attribute
-from utils.logger import log
 
 
 class LevelStats:
