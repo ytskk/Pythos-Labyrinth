@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from mechanics.character.hero import Hero
-from mechanics.leveling.leveling_effective import LevelStats
+from mechanics.leveling.leveling import LevelStats
 from utils.logger import LoggerLevel, log
 from mechanics.leveling.leveling_old import (
     xp_to_level_up,
@@ -52,18 +52,23 @@ def test_adding_xp(
 
         hero.add_xp(random_exp)
 
-        log(f"Hero: {hero.level_stats.readable()}")
+        log(f"Hero: {hero.level_stats.readable_detailed(round_digits=2)}")
+
+        if hero.level_stats.is_level_up_available:
+            will_level_up: bool = random.random() > 0.8
+            if will_level_up:
+                log("Level up!", level=LoggerLevel.INFO)
+                hero.level_stats.level_up()
 
 
-# in-file tests
 def main():
-    TEST_COUNT: int = 50
-    random_values = generate_gamma_values(TEST_COUNT, multiply=10)
+    TESTS_COUNT: int = 50
+    random_values = generate_gamma_values(TESTS_COUNT, multiply=10)
 
     level_stats: LevelStats = LevelStats()
 
-    for ind in range(TEST_COUNT):
-        log_name = f"Test {ind + 1}/{TEST_COUNT}\t"
+    for ind in range(TESTS_COUNT):
+        log_name = f"Test {ind + 1}/{TESTS_COUNT}\t"
 
         random_xp = int(random_values[ind])
 

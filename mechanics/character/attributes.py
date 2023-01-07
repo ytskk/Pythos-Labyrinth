@@ -2,6 +2,7 @@ import enum
 import random
 from typing import Optional
 from utils.logger import log
+from lib.readable import Readable
 
 
 class Attribute(str, enum.Enum):
@@ -26,7 +27,7 @@ class Attribute(str, enum.Enum):
         return random_attr
 
 
-class Attributes:
+class Attributes(Readable):
     def __init__(
         self,
         *,

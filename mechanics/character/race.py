@@ -1,12 +1,15 @@
 import enum
 import random
-
+from lib.readable import Readable
 from mechanics.character.attributes import Attributes
 
 
-class Race:
+class Race(Readable):
     @property
     def name(self) -> str:
+        """
+        Returns string representation of race name.
+        """
         return "Race"
 
     def basic_attributes(self) -> Attributes:
@@ -15,18 +18,11 @@ class Race:
         """
         ...
 
-    # """
-    # Returns the basic attributes of the race.
-    # """
-    # print("Generating basic attributes")
-    # # # return Attributes()
-    # raise NotImplementedError()
-
     def __str__(self) -> str:
         return self.__repr__()
 
     def __repr__(self) -> str:
-        return self.name
+        return f"Race({self.name})"
 
 
 class Ascenag(Race):
@@ -43,7 +39,6 @@ class Ascenag(Race):
         return "Ascenag"
 
     def basic_attributes(self) -> Attributes:
-        print("Generating Ascenag attributes")
         return Attributes(
             strength=2,
             charisma=2,

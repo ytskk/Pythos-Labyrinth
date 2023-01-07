@@ -1,15 +1,17 @@
 import math
+from typing import Any
+from lib.readable import Readable
 from lib.utils import clamp
 
 
-class LevelStats:
+class LevelStats(Readable):
     BASE_START_POINTS: int = 2
-    LEVELS_TO_SKILL_POINT: int = 3
+    LEVELS_TO_SKILL_POINT: int = 2
 
     def __init__(
         self,
         xp: int = 0,
-        points: int = BASE_START_POINTS,
+        points: float = BASE_START_POINTS,
     ) -> None:
         self.__xp = xp
         self.__level = xp_to_level(xp)
@@ -33,6 +35,9 @@ class LevelStats:
 
     @property
     def is_level_up_available(self) -> bool:
+        """
+        Is total xp enough to level up.
+        """
         return self.__xp >= self.xp_to_next_level
 
     @property
@@ -58,32 +63,31 @@ class LevelStats:
     def add(self, xp: int) -> None:
         self.__xp += xp
 
+    def add_skill_points(self, points: int) -> None:
+        self.__points += points
+
+    def spend_skill_points(self, points: int = 1) -> None:
+        self.__points -= points
+
     def level_up(self) -> None:
-        required_xp: int = self.xp_to_next_level
-        if self.__xp >= required_xp:
+        if self.is_level_up_available:
             self.__level += 1
-            self.__xp -= required_xp
+            self.__xp -= self.xp_to_next_level
             self.__points += 1 / LevelStats.LEVELS_TO_SKILL_POINT
 
     # utils.
-
-    def readable(self) -> str:
-        return f"Level: {self.level}, {self.effective_xp} of {self.xp_to_next_level}, {self.points} points.{' Level up available' if self.is_level_up_available else ''}"
-
-    def detailed_read(self) -> str:
-        return f"{self.level=}, {self.effective_xp=}, {self.xp_to_next_level=}, {self.points=}.{' Level up available' if self.is_level_up_available else ''}"
-
-    # magic methods.
-    def __str__(self) -> str:
-        return self.__repr__()
-
-    def __repr__(self) -> str:
-        return f"LevelStats({self.readable()})"
+    def copy_with(
+        self, xp: int | None = None, points: float | None = None
+    ) -> "LevelStats":
+        return LevelStats(
+            xp=xp or self.__xp,
+            points=points or self.__points,
+        )
 
 
 def xp_to_level_up_from_level(level: int) -> int:
     """
-    Returns the required amount of experience needed to level up from the current level
+    Returns the required amount of experience needed to level up from the current level.
     """
     return 75 + level * 25
 

@@ -5,6 +5,6 @@ def clamp(
     upper_limit,
 ):
     """
-    Returns this num clamped to be in the range lowerLimit-upperLimit.
+    Returns clamped value to be in the range lower_limit-upper_limit.
     """
     return min(upper_limit, max(lower_limit, value))
