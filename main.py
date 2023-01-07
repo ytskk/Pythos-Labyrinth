@@ -1,11 +1,12 @@
 import random
+
 from leveling_test import test_adding_xp
+from lib.logger import log
 from mechanics.character.attributes import Attribute, Attributes
 from mechanics.character.character_wrapper import choose_attribute
 from mechanics.character.hero import Hero
 from mechanics.character.race import Races
 from mechanics.leveling.leveling import LevelStats
-from utils.logger import log
 
 
 def main():

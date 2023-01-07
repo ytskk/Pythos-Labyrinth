@@ -1,6 +1,7 @@
 import random
+
+from lib.logger import log
 from mechanics.character.hero import Hero
-from utils.logger import log
 
 
 def generate_turn(hero: Hero) -> list[str]:

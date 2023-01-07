@@ -1,6 +1,6 @@
 import math
-from mechanics.character.attributes import Attribute
-from utils.logger import log
+
+from lib.logger import log
 
 
 class LevelStats:
@@ -17,7 +17,7 @@ class LevelStats:
         Adds experience and updates properties.
         """
         log(
-            f"+{ xp}XP",
+            f"+{xp}XP",
             name="LevelStats::add",
         )
         self.update(self.xp + xp)

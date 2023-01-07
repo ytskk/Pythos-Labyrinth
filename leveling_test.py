@@ -1,13 +1,10 @@
 import random
+
 import numpy as np
+
+from lib.logger import LoggerLevel, log
 from mechanics.character.hero import Hero
 from mechanics.leveling.leveling import LevelStats
-from utils.logger import LoggerLevel, log
-from mechanics.leveling.leveling_old import (
-    xp_to_level_up,
-    xp_to_level,
-    actual_xp_from_level,
-)
 
 
 def generate_gamma_values(

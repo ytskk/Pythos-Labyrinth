@@ -1,7 +1,8 @@
-from datetime import datetime
 import enum
-from typing import Any
 import inspect
+from datetime import datetime
+from typing import Any
+
 from colorama import Fore, Style
 
 

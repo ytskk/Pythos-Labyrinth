@@ -1,7 +1,8 @@
 import enum
 import random
 from typing import Optional
-from utils.logger import log
+
+from lib.logger import log
 from lib.readable import Readable
 
 

@@ -1,4 +1,5 @@
 from typing import Any, Optional
+
 from lib.readable import Readable
 from mechanics.character.attributes import Attributes
 from mechanics.character.race import Race

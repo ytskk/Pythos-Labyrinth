@@ -1,5 +1,6 @@
 import enum
 import random
+
 from lib.readable import Readable
 from mechanics.character.attributes import Attributes
 

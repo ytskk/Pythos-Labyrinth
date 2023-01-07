@@ -1,5 +1,5 @@
 import math
-from typing import Any
+
 from lib.readable import Readable
 from lib.utils import clamp
 
@@ -50,7 +50,7 @@ class LevelStats(Readable):
     @property
     def points(self) -> int:
         """
-        Unspend skill points.
+        Unspent skill points.
 
         See also:
         - LevelStats.LEVELS_TO_SKILL_POINT
