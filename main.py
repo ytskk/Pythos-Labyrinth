@@ -1,5 +1,6 @@
 import random
 
+from information_printer import welcoming_message
 from leveling_test import test_adding_xp
 from lib.logger import log
 from mechanics.character.attributes import Attribute, Attributes
@@ -10,6 +11,8 @@ from mechanics.leveling.leveling import LevelStats
 
 
 def main():
+    welcoming_message()
+
     luck: int = random.randint(1, 100)
 
     hero: Hero = Hero(

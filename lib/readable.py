@@ -4,6 +4,7 @@ from typing import Any
 class Readable:
     DEFAULT_ROUND_DIGITS: int = 5
     __round_digits: int | None = None
+    __include_private_methods: bool = True
 
     def readable(
         self,
