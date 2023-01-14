@@ -23,9 +23,15 @@ class Attribute(str, enum.Enum):
 
     @staticmethod
     def random() -> "Attribute":
-        random_attr = random.choice(list(Attribute.__members__.values()))
-        log(f"Random attribute: {random_attr}")
-        return random_attr
+        return random.choice(list(Attribute.__members__.values()))
+
+    @staticmethod
+    def random_without(attributes: list["Attribute"]) -> "Attribute":
+        return random.choice(list(set(Attribute.all()) - set(attributes)))
+
+    @staticmethod
+    def random_without_luck() -> "Attribute":
+        return Attribute.random_without([Attribute.LUCK])
 
 
 class Attributes(Readable):
@@ -50,16 +56,16 @@ class Attributes(Readable):
         By default, creates attributes with 1 point in each attribute and 3 points in luck.
         """
         return Attributes(
-            strength=1,
-            charisma=1,
-            intelligence=1,
-            agility=1,
-            luck=3,
+            strength=40,
+            charisma=40,
+            intelligence=40,
+            agility=40,
+            luck=50,
         )
 
-    def add_attribute(self, attribute: Attribute) -> "Attributes":
+    def add_attribute(self, attribute: Attribute, count: int = 1) -> "Attributes":
         return self.copy_with(
-            **{attribute.name.lower(): getattr(self, attribute.name.lower()) + 1}
+            **{attribute.name.lower(): getattr(self, attribute.name.lower()) + count}
         )
 
     def copy_with(

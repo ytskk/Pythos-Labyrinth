@@ -6,7 +6,7 @@ from lib.utils import clamp
 
 class LevelStats(Readable):
     BASE_START_POINTS: int = 2
-    LEVELS_TO_SKILL_POINT: int = 2
+    LEVELS_TO_SKILL_POINT: int = 1
 
     def __init__(
         self,

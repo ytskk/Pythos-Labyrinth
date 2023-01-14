@@ -49,12 +49,12 @@ def test_adding_xp(
 
         hero.add_xp(random_exp)
 
-        log(f"Hero: {hero.level_stats.readable_detailed(round_digits=2)}")
+        # log(f"Hero: {hero.level_stats.readable_detailed(round_digits=2)}")
 
         if hero.level_stats.is_level_up_available:
             will_level_up: bool = random.random() > 0.8
             if will_level_up:
-                log("Level up!", level=LoggerLevel.INFO)
+                # log("Level up!", level=LoggerLevel.INFO)
                 hero.level_stats.level_up()
 
 

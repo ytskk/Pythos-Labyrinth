@@ -22,15 +22,14 @@ def main():
             luck=luck,
         ),
     )
+    log(f"{hero.readable_detailed(round_digits=2, include_private_methods=False)}")
 
     test_adding_xp(hero, test_count=200)
 
-    log(f"Hero: {hero.attributes}")
-
     while hero.level_stats.points > 0:
-        choose_attribute(hero, Attribute.random())
+        choose_attribute(hero, Attribute.random_without_luck())
 
-    log(f"Hero: {hero.attributes}")
+    log(f"{hero.readable_detailed(round_digits=2, include_private_methods=False)}")
 
 
 if __name__ == "__main__":
