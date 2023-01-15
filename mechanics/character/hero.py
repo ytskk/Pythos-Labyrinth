@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from lib.readable import Readable
 from mechanics.character.attributes import Attributes
-from mechanics.character.race import Race
+from mechanics.character.race import Race, Races
 from mechanics.entities.alive_entity import AliveEntity
 from mechanics.leveling.leveling import LevelStats
 
@@ -33,3 +33,10 @@ class Hero(Readable, AliveEntity):
 
     def add_xp(self, xp: int) -> None:
         self.level_stats.add(xp)
+
+    @staticmethod
+    def random_hero() -> "Hero":
+        return Hero(
+            race=Races.random(),
+            level_stats=LevelStats(),
+        )

@@ -1,6 +1,6 @@
 import random
 
-from rich import print
+from rich import print as rprint
 from rich.console import Console
 from rich.text import Text
 
@@ -14,7 +14,7 @@ def welcoming_message() -> None:
     Prints welcoming message.
     """
 
-    colors: list[str] = ["yellow", "green", "dark_orange", "red"]
+    colors: tuple = ("yellow", "green", "dark_orange", "red")
 
     random_color: str = random.choice(colors)
     max_width = min(console.width, max(100, int(console.width * 0.6)))
@@ -34,4 +34,6 @@ def welcoming_message() -> None:
         )
     )
 
-    print(welcoming_text)
+    rprint(welcoming_text)
+
+    console.line(2)

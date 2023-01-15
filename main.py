@@ -22,6 +22,7 @@ def main():
             luck=luck,
         ),
     )
+
     log(f"{hero.readable_detailed(round_digits=2, include_private_methods=False)}")
 
     test_adding_xp(hero, test_count=200)

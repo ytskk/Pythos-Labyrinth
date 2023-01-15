@@ -1,6 +1,5 @@
 def clamp(
     value,
-    *,
     lower_limit,
     upper_limit,
 ):

@@ -33,7 +33,7 @@ class Race(Readable):
             charisma=40,
             intelligence=40,
             agility=40,
-            luck=50,
+            luck=40,
         )
 
     def attribute_coefficient(self, attribute: Attribute) -> int:
