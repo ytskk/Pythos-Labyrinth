@@ -1,4 +1,3 @@
-from mechanics.character.hero import Hero
 from mechanics.rooms.room import RoomType
 from mechanics.rooms.rooms_generator import generate_room
 from lib.logger import log
@@ -6,8 +5,6 @@ from lib.logger import log
 
 def main():
     rooms_count = 4
-
-    test_hero: Hero = Hero.random_hero()
 
     __test_room_generation(rooms_count, luck=-10000, test_name="Unlucky")
     __test_room_generation(rooms_count, luck=10000, test_name="Lucky  ")
