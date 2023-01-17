@@ -5,19 +5,14 @@ from lib.logger import log
 
 
 def generate_room(luck: int = 50) -> Room:
-    room: Room = random_room_weighted(luck)
+    room_type: RoomType = random_room_type_weighted(luck)
+
+    room = Room.from_type(room_type, luck=luck)
 
     return room
 
 
-def random_room() -> Room:
-    """
-    Returns a random room.
-    """
-    return Room(RoomType.random())
-
-
-def random_room_weighted(luck: int = 50) -> Room:
+def random_room_type_weighted(luck: int = 50) -> RoomType:
     """
     Returns a random room, weighted by the room type.
 
@@ -55,7 +50,7 @@ def random_room_weighted(luck: int = 50) -> Room:
         k=1,
     )[0]
 
-    return Room(room_type)
+    return room_type
 
 
 def _get_ploy_weight(

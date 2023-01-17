@@ -63,26 +63,12 @@ class Race(Readable):
 
 
 class Ascenag(Race):
-    """
-    The Ascenag have lots of talents and can do lots of things. They're good at changing and
-    doing well in different roles. They're also known for being brave and determined,
-    and not giving up easily. The Ascenag are well-rounded, with strengths and weaknesses
-    in all areas. They're good at fighting, using magic and being stealthy, and they
-    can do well in any role they choose.
-    """
-
     @property
     def name(self) -> str:
         return "Ascenag"
 
 
 class Seraphim(Race):
-    """
-    Seraphim have a natural aptitude for magic, and they are the most skilled spellcasters
-    in the game world. They are also agile and fast, making them difficult to defeat in combat.
-    Seraphs are also known for their intelligence and wisdom and are skilled at diplomacy and negotiation.
-    """
-
     BASE_HEALTH: int = 80
 
     @property
@@ -91,10 +77,6 @@ class Seraphim(Race):
 
 
 class Durrok(Race):
-    """
-    They can hack traps to avoid taking damage, and they can peek through doors.
-    """
-
     BASE_HEALTH: int = 120
 
     @property
@@ -103,12 +85,6 @@ class Durrok(Race):
 
 
 class Scrof(Race):
-    """
-    The most fearsome of the four races, with a natural talent for physical combat.
-    They have the highest resistance to magical attacks and curses. Because of their
-    unprecedented strength, they can overlook the effects of traps.
-    """
-
     BASE_HEALTH: int = 150
 
     @property
