@@ -1,15 +1,12 @@
 import random
 from lib.utils import clamp
 from mechanics.rooms.room import Room, RoomType
-from lib.logger import log
 
 
 def generate_room(luck: int = 50) -> Room:
     room_type: RoomType = random_room_type_weighted(luck)
 
-    room = Room.from_type(room_type, luck=luck)
-
-    return room
+    return Room.from_type(room_type, luck=luck)
 
 
 def random_room_type_weighted(luck: int = 50) -> RoomType:
@@ -39,18 +36,11 @@ def random_room_type_weighted(luck: int = 50) -> RoomType:
         100 - sum(weights),
     )
 
-    # log.debug(
-    #     f"{weight_coef=}, Room weights: {room_weights}",
-    #     name="Room weights",
-    # )
-
-    room_type = random.choices(
+    return random.choices(
         population=list(RoomType.all()),
         weights=room_weights,
         k=1,
     )[0]
-
-    return room_type
 
 
 def _get_ploy_weight(

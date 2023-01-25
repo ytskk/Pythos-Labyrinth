@@ -1,7 +1,7 @@
 import enum
 import inspect
 from datetime import datetime
-from typing import Any
+from typing import Any, Iterable
 
 from rich import print as rprint
 from rich.text import Text
@@ -126,12 +126,19 @@ class log:
         )
 
     def __print(self) -> Any:
-        text: Text = Text()
-        text.append(self.date, style="dim")
-        if self.show_name:
-            text.append(f"[{self.log_name}] ", style="dim")
-        if self.show_level:
-            text.append(f"{self.level.name} ", style=self.level.value)
-        text.append(self.message)
+        """
+        If self.message is an iterable, it will be unpacked and displayed as a list.
 
-        rprint(text)
+        If self.message is not an iterable, it will be displayed as is. Used for displaying
+        Tables, etc.
+        """
+        is_message_iterable: bool = isinstance(self.message, Iterable)
+
+        text: Text = Text.assemble(
+            (self.date, "dim"),
+            (f"[{self.log_name}] ", "dim") if self.show_name else "",
+            (f"{self.level.name} ", self.level.value) if self.show_level else "",
+            *self.message if is_message_iterable else "",
+        )
+
+        rprint(text, "" if is_message_iterable else self.message)

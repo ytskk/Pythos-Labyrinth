@@ -8,8 +8,8 @@ from mechanics.character.attributes import Attributes, Attribute
 class Race(Readable):
     BASE_HEALTH: int = 100
 
-    @property
-    def name(self) -> str:
+    @staticmethod
+    def name() -> str:
         """
         Returns string representation of race name.
         """
@@ -38,57 +38,49 @@ class Race(Readable):
 
     def attribute_coefficient(self, attribute: Attribute) -> int:
         """
-        Returns the coefficient of the attribute.
+        Returns the coefficient for the specified attribute.
+
+        Args:
+            attribute: The attribute to get coefficient for. Defaults to 1.
         """
-        di = self.attributes_coefficient().dict(use_short_names=False)
-        return di.get(attribute.name, 1)
+        attrs = self.attributes_coefficient().dict(use_short_names=False)
+
+        return attrs.get(attribute.name, 1)
 
     def attributes_coefficient(self) -> Attributes:
         """
-        Returns the coefficients of attributes.
+        Returns the coefficients of all attributes.
         """
         return Attributes(
             strength=1,
             charisma=1,
             intelligence=1,
             agility=1,
-            luck=1,
+            luck=0,
         )
-
-    def __str__(self) -> str:
-        return self.__repr__()
-
-    def __repr__(self) -> str:
-        return f"Race({self.name})"
 
 
 class Ascenag(Race):
-    @property
-    def name(self) -> str:
+    @staticmethod
+    def name() -> str:
         return "Ascenag"
 
 
 class Seraphim(Race):
-    BASE_HEALTH: int = 80
-
-    @property
-    def name(self) -> str:
+    @staticmethod
+    def name() -> str:
         return "Seraphim"
 
 
 class Durrok(Race):
-    BASE_HEALTH: int = 120
-
-    @property
-    def name(self) -> str:
+    @staticmethod
+    def name() -> str:
         return "Durrok"
 
 
 class Scrof(Race):
-    BASE_HEALTH: int = 150
-
-    @property
-    def name(self) -> str:
+    @staticmethod
+    def name() -> str:
         return "Scrof"
 
 
@@ -102,16 +94,13 @@ class Races(Race, enum.Enum):
     DURROK = Durrok
     SCROF = Scrof
 
-    @property
     def new(self):
         return self.value()
 
     @classmethod
+    def all(cls) -> list["Races"]:
+        return list(cls)
+
+    @classmethod
     def random(cls) -> Race:
-        return random.choice(list(cls)).new
-
-    def __str__(self) -> str:
-        return self.__repr__()
-
-    def __repr__(self) -> str:
-        return f"Race({self.value})"
+        return random.choice(cls.all()).new()

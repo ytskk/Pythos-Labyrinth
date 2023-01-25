@@ -5,13 +5,13 @@ from lib.utils import clamp
 
 
 class LevelStats(Readable):
-    BASE_START_POINTS: int = 5
+    START_SKILL_POINTS: int = 5
     LEVELS_TO_SKILL_POINT: int = 1
 
     def __init__(
         self,
         xp: int = 0,
-        points: float = BASE_START_POINTS,
+        points: float = START_SKILL_POINTS,
     ) -> None:
         self.__xp = xp
         self.__level = xp_to_level(xp)
